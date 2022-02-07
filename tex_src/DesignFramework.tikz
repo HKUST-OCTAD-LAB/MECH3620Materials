@@ -1,0 +1,149 @@
+
+%%% Preamble Requirements %%%
+% \usepackage{geometry}
+% \usepackage{amsfonts}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{tikz}
+
+% Optional packages such as sfmath set through python interface
+% \usepackage{sfmath}
+
+% \usetikzlibrary{arrows,chains,positioning,scopes,shapes.geometric,shapes.misc,shadows}
+
+%%% End Preamble Requirements %%%
+
+\input{"C:/Users/arjit/OneDrive - HKUST/AeroMDAO Files/MECH3620Materials/pyXDSM/pyxdsm/diagram_styles"}
+\begin{tikzpicture}
+
+\matrix[MatrixSetup]{
+%Row 0
+&
+\node [DataIO] (output_TbW) {$s_{FL}, K_S, G, M$};&
+&
+\node [DataIO] (output_tail) {$S_{\text{ref}}, L_{\text{fus}}, D_{\text{fus}}$};&
+\node [DataIO] (output_empty) {$\begin{array}{c}S_{\text{ref}}, L_{\text{fus}}, D_{\text{fus}} \\ c_f, S_{\text{wet}}/S_{\text{ref}}, AR,e\end{array}$};&
+\node [DataIO] (output_drag) {$c_f, S_{\text{wet}}/S_{\text{ref}}, AR,e$};&
+\node [DataIO] (output_fuel) {$C, R, E, \rho$};&
+\node [DataIO] (output_WbS) {$S_{\text{ref}}$};&
+\\
+%Row 1
+\node [DataIO] (left_output_TbW) {$(T/W)^*$};&
+\node [Optimization] (TbW) {$\begin{array}{c}T/W \\ \text{Optimization}\end{array}$};&
+&
+&
+\node [DataInter] (TbW-empty) {$(T_0)_i$};&
+&
+&
+&
+\\
+%Row 2
+\node [DataIO] (left_output_MTOW) {$W_0^*$};&
+\node [DataInter] (MTOW-TbW) {$W_0$};&
+\node [ImplicitAnalysis] (MTOW) {$\begin{array}{c}\text{MTOW} \\ \text{Estimation}\end{array}$};&
+&
+\node [DataInter] (MTOW-empty) {$(W_0)_i$};&
+&
+&
+\node [DataInter] (MTOW-WbS) {$W_0$};&
+\\
+%Row 3
+&
+&
+&
+\node [Analysis] (tail) {$\begin{array}{c}\text{Tail} \\ \text{Sizing}\end{array}$};&
+\node [DataInter] (tail-empty) {$S_{HT}, S_{VT}$};&
+&
+&
+&
+\\
+%Row 4
+&
+&
+\node [DataInter] (empty-MTOW) {$W_e/W_0$};&
+&
+\node [Analysis] (empty) {$\begin{array}{c}\text{Empty} \\ \text{Weight}\end{array}$};&
+&
+&
+&
+\\
+%Row 5
+&
+\node [DataInter] (drag-TbW) {$C_{D_0}, K, C_{L_{\text{max}}}$};&
+&
+&
+&
+\node [Analysis] (drag) {$\begin{array}{c}\text{Drag} \\ \text{Polar}\end{array}$};&
+\node [DataInter] (drag-fuel) {$C_{D_0}, K, C_{L_{\text{max}}}$};&
+&
+\\
+%Row 6
+&
+&
+\node [DataInter] (fuel-MTOW) {$W_f/W_0$};&
+&
+&
+&
+\node [Analysis] (fuel) {$\begin{array}{c}\text{Fuel} \\ \text{Weight}\end{array}$};&
+&
+\\
+%Row 7
+&
+\node [DataInter] (WbS-TbW) {$W_0/S_{\text{ref}}$};&
+&
+&
+&
+&
+&
+\node [Analysis] (WbS) {$\begin{array}{c}\text{Wing} \\ \text{Loading}\end{array}$};&
+\\
+%Row 8
+&
+&
+&
+&
+&
+&
+&
+&
+\\
+};
+
+% XDSM process chains
+
+
+\begin{pgfonlayer}{data}
+\path
+% Horizontal edges
+(MTOW) edge [DataLine] (MTOW-WbS)
+(MTOW) edge [DataLine] (MTOW-TbW)
+(MTOW) edge [DataLine] (MTOW-empty)
+(empty) edge [DataLine] (empty-MTOW)
+(tail) edge [DataLine] (tail-empty)
+(TbW) edge [DataLine] (TbW-empty)
+(fuel) edge [DataLine] (fuel-MTOW)
+(drag) edge [DataLine] (drag-TbW)
+(WbS) edge [DataLine] (WbS-TbW)
+(drag) edge [DataLine] (drag-fuel)
+(MTOW) edge [DataLine] (left_output_MTOW)
+(TbW) edge [DataLine] (left_output_TbW)
+% Vertical edges
+(MTOW-WbS) edge [DataLine] (WbS)
+(MTOW-TbW) edge [DataLine] (TbW)
+(MTOW-empty) edge [DataLine] (empty)
+(empty-MTOW) edge [DataLine] (MTOW)
+(tail-empty) edge [DataLine] (empty)
+(TbW-empty) edge [DataLine] (empty)
+(fuel-MTOW) edge [DataLine] (MTOW)
+(drag-TbW) edge [DataLine] (TbW)
+(WbS-TbW) edge [DataLine] (TbW)
+(drag-fuel) edge [DataLine] (fuel)
+(drag) edge [DataLine] (output_drag)
+(tail) edge [DataLine] (output_tail)
+(fuel) edge [DataLine] (output_fuel)
+(WbS) edge [DataLine] (output_WbS)
+(empty) edge [DataLine] (output_empty)
+(TbW) edge [DataLine] (output_TbW);
+\end{pgfonlayer}
+
+\end{tikzpicture}

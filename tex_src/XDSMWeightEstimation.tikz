@@ -1,0 +1,92 @@
+
+%%% Preamble Requirements %%%
+% \usepackage{geometry}
+% \usepackage{amsfonts}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{tikz}
+
+% Optional packages such as sfmath set through python interface
+% \usepackage{sfmath}
+
+% \usetikzlibrary{arrows,chains,positioning,scopes,shapes.geometric,shapes.misc,shadows}
+
+%%% End Preamble Requirements %%%
+
+\input{"C:/Users/arjit/OneDrive - HKUST/AeroMDAO Files/MECH3620Materials/pyXDSM/pyxdsm/diagram_styles"}
+\begin{tikzpicture}
+
+\matrix[MatrixSetup]{
+%Row 0
+&
+\node [DataIO] (output_mission) {$\text{Mission Data}$};&
+&
+\node [DataIO] (output_mtow) {$W_\text{crew}, W_\text{payload}, W_{0_\text{init}}$};&
+&
+\\
+%Row 1
+&
+\node [Analysis,stack] (mission) {$\begin{array}{c}\text{Mission Segment} \\ \text{Fuel Fraction}\end{array}$};&
+\node [DataInter] (mission-ff) {$FFs$};&
+&
+&
+\\
+%Row 2
+&
+&
+\node [Analysis] (ff) {$\begin{array}{c}\text{Fuel-Weight} \\ \text{Estimation}\end{array}$};&
+\node [DataInter] (ff-mtow) {$W_f/W_0$};&
+&
+\\
+%Row 3
+\node [DataIO] (left_output_mtow) {$W_0^*$};&
+&
+&
+\node [ImplicitAnalysis] (mtow) {$\begin{array}{c}\text{Takeoff Weight } \\ \text{Estimation}\end{array}$};&
+\node [DataInter] (mtow-empty) {$W_0$};&
+\\
+%Row 4
+&
+&
+&
+\node [DataInter] (empty-mtow) {$W_e/W_0$};&
+\node [Analysis] (empty) {$\begin{array}{c}\text{Empty Weight} \\ \text{Estimation}\end{array}$};&
+\\
+%Row 5
+&
+&
+&
+&
+&
+\\
+};
+
+% XDSM process chains
+{ [start chain=process]
+ \begin{pgfonlayer}{process} 
+\chainin (mission);
+\chainin (ff) [join=by ProcessHVA];
+\chainin (mtow) [join=by ProcessHVA];
+\chainin (empty) [join=by ProcessHVA];
+\chainin (mtow) [join=by ProcessHVA];
+\end{pgfonlayer}
+}
+
+\begin{pgfonlayer}{data}
+\path
+% Horizontal edges
+(mtow) edge [DataLine] (mtow-empty)
+(mission) edge [DataLine] (mission-ff)
+(ff) edge [DataLine] (ff-mtow)
+(empty) edge [DataLine] (empty-mtow)
+(mtow) edge [DataLine] (left_output_mtow)
+% Vertical edges
+(mtow-empty) edge [DataLine] (empty)
+(mission-ff) edge [DataLine] (ff)
+(ff-mtow) edge [DataLine] (mtow)
+(empty-mtow) edge [DataLine] (mtow)
+(mission) edge [DataLine] (output_mission)
+(mtow) edge [DataLine] (output_mtow);
+\end{pgfonlayer}
+
+\end{tikzpicture}
