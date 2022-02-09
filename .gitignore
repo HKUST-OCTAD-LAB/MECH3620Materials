@@ -317,3 +317,8 @@ TSWLatexianTemp*
 *.lay
 *.plt
 _build*
+
+# Custom
+.ipynb_checkpoints
+*.tex
+*.tikz

@@ -44,4 +44,10 @@ x.add_input('mtow', r'W_\text{crew}, W_\text{payload}, W_{0_\text{init}}')
 x.add_output('mtow', r'W_0^*')
 
 #%% Writing
-x.write('../tex_src/XDSMEmpty', cleanup=False)
+x.write(
+        'XDSMEmpty',     # Filename
+        build   = True,  # Build PDF using PDFLaTeX
+        cleanup = True,  # Clean up TeX junk
+        quiet   = False, # Write PDFLaTeX output to terminal
+        outdir  = 'pics' # Output directory (relative path)
+    )
