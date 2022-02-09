@@ -9,3 +9,5 @@ To install the **customised** pyXDSM library (https://github.com/mdolab/pyXDSM) 
 ## Usage
 
 For an example of generating XDSMs, check [scripts](scripts).
+
+![](pics/DesignFramework.svg)
