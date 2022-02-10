@@ -16,7 +16,7 @@ x = XDSM.XDSM()
 # x.add_system('tail', ecomp, (r'\text{Tail}', r'\text{Sizing}'))
 
 #%% Mission
-x.add_system('mission', ecomp, (r'\text{Mission Segment}', r'\text{Fuel Fraction}'), stack=True, faded = True)
+x.add_system('mission', ecomp, (r'\text{Mission Segment}', r'\text{Fuel Fraction}'), stack=True,)# faded = True)
 
 #%% Fuel fractions
 x.add_system('ff', ecomp, (r'\text{Fuel-Weight}', r'\text{Estimation}'), faded = True)
@@ -25,7 +25,7 @@ x.add_system('ff', ecomp, (r'\text{Fuel-Weight}', r'\text{Estimation}'), faded =
 x.add_system('mtow', icomp, (r'\text{Takeoff Weight }', r'\text{Estimation}'), faded = True)
 
 #%% Empty weight
-x.add_system('empty', ecomp, (r'\text{Empty Weight}', r'\text{Estimation}'),)# faded = True)
+x.add_system('empty', ecomp, (r'\text{Empty Weight}', r'\text{Estimation}'), faded = True)
 
 #%% Connections
 x.connect('mtow', 'empty', r'W_0')
@@ -45,7 +45,7 @@ x.add_output('mtow', r'W_0^*')
 
 #%% Writing
 x.write(
-        'XDSMEmpty',     # Filename
+        'XDSMMission',     # Filename
         build   = True,  # Build PDF using PDFLaTeX
         cleanup = True,  # Clean up TeX junk
         quiet   = False, # Write PDFLaTeX output to terminal
