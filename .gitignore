@@ -322,3 +322,6 @@ _build*
 .ipynb_checkpoints
 *.tex
 *.tikz
+
+pyXDSM/build
+*.egg-info

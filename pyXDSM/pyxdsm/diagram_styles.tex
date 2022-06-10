@@ -9,46 +9,70 @@
 % \definecolor{tableau7}{RGB}{162,162,162}
 % \definecolor{tableau8}{RGB}{205,204,93}
 % \definecolor{tableau9}{RGB}{109,204,218}
+% \definecolor{tableau10}{RGB}{204, 255, 204}
 
-\definecolor{tableau0}{RGB}{77, 121, 168}
-\definecolor{tableau1}{RGB}{242, 201, 217}
-\definecolor{tableau2}{RGB}{255, 87, 88}
-\definecolor{tableau3}{RGB}{118, 183, 178}
-\definecolor{tableau4}{RGB}{180, 180, 255}
-\definecolor{tableau5}{RGB}{255, 230, 204}
-\definecolor{tableau6}{RGB}{176, 121, 162}
-\definecolor{tableau7}{RGB}{255, 157, 167}
-\definecolor{tableau8}{RGB}{255, 250, 216}
-\definecolor{tableau9}{RGB}{186, 176, 172}
-\definecolor{tableau10}{RGB}{204, 255, 204}
+% \definecolor{tableau0}{RGB}{77, 121, 168}
+% \definecolor{tableau1}{RGB}{242, 201, 217}
+% \definecolor{tableau2}{RGB}{255, 87, 88}
+% \definecolor{tableau3}{RGB}{118, 183, 178}
+% \definecolor{tableau4}{RGB}{180, 180, 255}
+% \definecolor{tableau5}{RGB}{255, 230, 204}
+% \definecolor{tableau6}{RGB}{176, 121, 162}
+% \definecolor{tableau7}{RGB}{255, 157, 167}
+% \definecolor{tableau8}{RGB}{255, 250, 216}
+% \definecolor{tableau9}{RGB}{186, 176, 172}
+% \definecolor{tableau10}{RGB}{204, 255, 204}
 
 % Tableau 20 color palette, taken from
 % https://jrnold.github.io/ggthemes/reference/tableau_color_pal.html
 % we use the lighter variants here with 80% opacity
 % Blue
-\definecolor{red}{HTML}{A0CBE8}
+% \definecolor{red}{HTML}{A0CBE8}
+% % Orange
+% \definecolor{orange}{HTML}{FFBE7D}
+% % Cyan
+% \definecolor{cyan}{HTML}{86BCB6}
+% % Green
+% \definecolor{green}{HTML}{8CD17D}
+% % Yellow
+% \definecolor{yellow}{HTML}{F1CE63}
+% % Salmon
+% \definecolor{salmon}{HTML}{FF9D9A}
+
+% \tikzstyle{every node}=[align=center]
+
+% Blue
+% \definecolor{red}{HTML}{A0CBE8}
+\definecolor{blue}{RGB}{180, 180, 255}
+
 % Orange
-\definecolor{orange}{HTML}{FFBE7D}
+% \definecolor{orange}{HTML}{FFBE7D}
+\definecolor{orange}{RGB}{255, 230, 204}
+
 % Cyan
 \definecolor{cyan}{HTML}{86BCB6}
-% Green
-\definecolor{green}{HTML}{8CD17D}
-% Yellow
-\definecolor{yellow}{HTML}{F1CE63}
-% Salmon
-\definecolor{salmon}{HTML}{FF9D9A}
 
-\tikzstyle{every node}=[align=center]
+% Green
+% \definecolor{green}{HTML}{8CD17D}
+\definecolor{green}{RGB}{204, 255, 204}
+
+% Yellow
+% \definecolor{yellow}{HTML}{F1CE63}
+\definecolor{yellow}{RGB}{255, 250, 216}
+
+% Salmon
+% \definecolor{salmon}{HTML}{FF9D9A}
+\definecolor{salmon}{RGB}{242, 201, 217}
 
 % Component types
-\tikzstyle{Optimization} = [rounded rectangle,draw,fill=tableau4!80,inner sep=6pt,minimum height=1cm,text badly centered]
-\tikzstyle{LP_Optimization} = [rectangle,draw,fill=tableau4!50,inner sep=6pt,minimum height=1cm,text badly centered]
-\tikzstyle{Analysis} = [rectangle,draw,fill=tableau10!100,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{Optimization} = [rounded rectangle,draw,fill=blue!80,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{LP_Optimization} = [rectangle,draw,fill=blue!50,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{Analysis} = [rectangle,draw,fill=green!100,inner sep=6pt,minimum height=1cm,text badly centered]
 \tikzstyle{ImplicitAnalysis} = [rectangle,draw,fill=salmon!50,inner sep=6pt,minimum height=1cm,text badly centered]
-\tikzstyle{Function} = [rectangle,draw,fill=tableau2!40,inner sep=6pt,minimum height=1cm,text badly centered]
-\tikzstyle{MDA} = [rounded rectangle,draw,fill=tableau5!100,inner sep=6pt,minimum height=1cm,text badly centered]
-\tikzstyle{Metamodel} = [rectangle,draw,fill=tableau8!100,inner sep=6pt,minimum height=1cm,text badly centered]
-\tikzstyle{DOE} = [rounded rectangle,draw,fill=tableau8!50,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{Function} = [rectangle,draw,fill=green!40,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{MDA} = [rounded rectangle,draw,fill=yellow!100,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{Metamodel} = [rectangle,draw,fill=yellow!100,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{DOE} = [rounded rectangle,draw,fill=yellow8!50,inner sep=6pt,minimum height=1cm,text badly centered]
 %\tikzstyle{OptFunction} = [rectangle,draw,fill=red!20,inner sep=6pt,minimum height=1cm,text badly centered]
 
 \tikzstyle{every node}=[font=\sffamily,align=center]
@@ -63,7 +87,7 @@
 % Colors
 \newcommand{\explicitColor}{green}
 \newcommand{\implicitColor}{salmon}
-\newcommand{\optimizationColor}{red} % also used by DOE
+\newcommand{\optimizationColor}{blue} % also used by DOE
 
 % Component types
 \tikzstyle{Optimization} = [\procShape,draw,fill=\optimizationColor!\fillOpacity,inner sep=6pt,minimum height=1cm,text badly centered]

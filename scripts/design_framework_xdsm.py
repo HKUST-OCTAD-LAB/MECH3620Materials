@@ -50,5 +50,6 @@ x.write(
         build   = True,    # Build PDF using PDFLaTeX
         cleanup = True,    # Clean up TeX junk
         quiet   = False,   # Write PDFLaTeX output to terminal
-        outdir  = 'pics'   # Output directory (relative path)
+        outdir  = '../pics'   # Output directory (relative path)
     )
+# %%
